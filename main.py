@@ -1,16 +1,10 @@
 import flet as a
 
-
-
+# main function
 def main(page: a.Page):
-
-
     page.title = "BMI calculator "
     page.horizontal_alignment = a.MainAxisAlignment.START
-    # page.horizontal_alignment = a.CrossAxisAlignment.END
-    # 3 ta text field
-    #reasult dekhina pareyo both tex and value ra age anu sar ni ta differ garxa
-
+   
     height_field = a.TextField(hint_text="Height (cm)")
     weight_field = a.TextField(hint_text="Weight (kg)")
     txt_number = a.TextField(value="", text_align=a.TextAlign.CENTER, width=100,hint_text="Age",)
@@ -18,10 +12,21 @@ def main(page: a.Page):
     def calculate(age,weight,height):
         print(weight,height)
         if (age and weight and height):
-            print('here')
             weight = int(weight)
-            height = float(int(height)/100)
-            BMI = weight/(height**2)
+            height= int(height)
+            if ((height < 50 or height > 220) or (weight < 1 or weight > 300)):
+                weight_field.border_color = a.Colors.RED_500
+                height_field.border_color = a.Colors.RED_500
+                weight_field.hint_text = '1 > weight < 300'
+                height_field.hint_text = '50cm > height < 220cm'
+                weight_field.value=""
+                height_field.value=""
+
+                page.update()
+                return
+
+            height = float(int(height)/100) # height in meters
+            BMI = weight/(height**2)    
             print(BMI)
             if BMI< 18.5:
                 page.controls.append(a.Text(f"You are underweight, your bmi is {round(BMI,2)}",color=a.Colors.RED_500,size=22,text_align=a.TextAlign.CENTER))
