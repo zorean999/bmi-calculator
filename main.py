@@ -1,15 +1,10 @@
 import flet as a
 
 
-
 def main(page: a.Page):
-
-
     page.title = "BMI calculator "
     page.horizontal_alignment = a.MainAxisAlignment.START
-    # page.horizontal_alignment = a.CrossAxisAlignment.END
-    # 3 ta text field
-    #reasult dekhina pareyo both tex and value ra age anu sar ni ta differ garxa
+
 
     height_field = a.TextField(hint_text="Height (cm)")
     weight_field = a.TextField(hint_text="Weight (kg)")
@@ -75,3 +70,4 @@ def main(page: a.Page):
     )
 
 a.app(main)
+
