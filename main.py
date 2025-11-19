@@ -1,10 +1,16 @@
 import flet as a
 
-# main function
+
+
 def main(page: a.Page):
+
+
     page.title = "BMI calculator "
     page.horizontal_alignment = a.MainAxisAlignment.START
-   
+    # page.horizontal_alignment = a.CrossAxisAlignment.END
+    # 3 ta text field
+    #reasult dekhina pareyo both tex and value ra age anu sar ni ta differ garxa
+
     height_field = a.TextField(hint_text="Height (cm)")
     weight_field = a.TextField(hint_text="Weight (kg)")
     txt_number = a.TextField(value="", text_align=a.TextAlign.CENTER, width=100,hint_text="Age",)
@@ -30,12 +36,18 @@ def main(page: a.Page):
             print(BMI)
             if BMI< 18.5:
                 page.controls.append(a.Text(f"You are underweight, your bmi is {round(BMI,2)}",color=a.Colors.RED_500,size=22,text_align=a.TextAlign.CENTER))
-            elif BMI>=18.5 or BMI <24.9:
+            elif BMI>=18.5 and BMI <24.9:
                 page.controls.append(a.Text(f"you have healthy weight, your bmi is {round(BMI,2)}",color=a.Colors.GREEN_500,size=22,text_align=a.TextAlign.CENTER))
-            elif BMI >=25 or BMI<29.9:
+            elif BMI >=25 and BMI<29.9:
                 page.controls.append(a.Text(f"you are over weight, your bmi is {round(BMI,2)}",color=a.Colors.RED_500,size=22,text_align=a.TextAlign.CENTER))
             else:
-                page.controls.append(a.Text(f"obesity, your bmi is {round(BMI,2)}",color=a.Colors.RED_600,text_align=a.TextAlign.CENTER))
+                page.controls.append(a.Text(f"obesity, your bmi is {round(BMI,2)}",size=22,color=a.Colors.RED_600,text_align=a.TextAlign.CENTER))
+            
+            weight_field.border_color = a.Colors.GREEN_300
+            height_field.border_color = a.Colors.GREEN_300
+            txt_number.border_color = a.Colors.GREEN_300
+
+            
             page.update()
         else:
             print('else')
